@@ -32,7 +32,7 @@ class Database {
       conn.release();
       return this.pool;
     } catch (error) {
-      throw new Error(Gagal inisialisasi DB: );
+      throw new Error("Gagal inisialisasi DB: " + error.message);
     }
   }
 
