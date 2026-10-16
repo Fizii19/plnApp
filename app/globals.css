@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Tema warna & token desain global aplikasi SIP Listrik
+   ============================================================ */
 :root {
   --background: #f1f5f9;
   --foreground: #0f172a;
+  /* Aksen utama amber */
+  --color-primary: #fbbf24;
+  --color-primary-hover: #f59e0b;
 }
 
 @theme inline {
@@ -15,6 +21,66 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animasi slide-in untuk data-[state] Radix */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes zoom-in-95 {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+@keyframes zoom-out-95 {
+  from { transform: scale(1); }
+  to { transform: scale(0.95); }
+}
+@keyframes slide-in-from-top-2 {
+  from { transform: translateY(-0.5rem); }
+  to { transform: translateY(0); }
+}
+@keyframes slide-in-from-bottom-2 {
+  from { transform: translateY(0.5rem); }
+  to { transform: translateY(0); }
+}
+@keyframes slide-in-from-left-1-2 {
+  from { transform: translateX(-50%) translateY(-48%) scale(0.95); }
+  to { transform: translateX(-50%) translateY(-50%) scale(1); }
+}
+
+.animate-in {
+  animation-fill-mode: forwards;
+}
+.animate-out {
+  animation-fill-mode: forwards;
+}
+.fade-in-0 {
+  animation: fade-in 0.15s ease;
+}
+.fade-out-0 {
+  animation: fade-out 0.15s ease;
+}
+.zoom-in-95 {
+  animation: zoom-in-95 0.15s ease;
+}
+.zoom-out-95 {
+  animation: zoom-out-95 0.15s ease;
+}
+.slide-in-from-top-2 {
+  animation: slide-in-from-top-2 0.15s ease;
+}
+.slide-in-from-bottom-2 {
+  animation: slide-in-from-bottom-2 0.15s ease;
+}
+.slide-in-from-left-1\/2 {
+  animation: slide-in-from-left-1-2 0.2s ease;
 }
 
 /* Saat halaman dicetak, pastikan latar putih bersih */

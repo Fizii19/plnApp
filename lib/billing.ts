@@ -14,7 +14,7 @@
  */
 
 import { formatPeriode } from "./format";
-import type { JenisPelanggan, Pelanggan, Pemakaian, RincianTagihan, Tarif } from "./types";
+import type { JenisPelanggan, Pelanggan, Pemakaian, Pembayaran, RincianTagihan, Tarif } from "./types";
 
 /**
  * Mencari tarif yang berlaku untuk sebuah jenis pelanggan.
@@ -161,6 +161,31 @@ export function riwayatPemakaian(
   return daftarPemakaian
     .filter((p) => p.noKontrol === noKontrol)
     .sort((a, b) => b.tahun - a.tahun || b.bulan - a.bulan);
+}
+
+/**
+ * Mengecek apakah satu periode tagihan sudah pernah dibayar.
+ *
+ * Dipakai dashboard admin (hitung tagihan tertunggak) dan loket petugas
+ * (badge status Lunas/Belum pada pemilihan periode).
+ *
+ * @param daftarPembayaran - Seluruh data transaksi pembayaran.
+ * @param noKontrol - Nomor kontrol pelanggan.
+ * @param bulan - Bulan tagihan (1-12).
+ * @param tahun - Tahun tagihan.
+ * @returns true bila sudah ada pembayaran untuk periode tersebut.
+ *
+ * @example sudahDibayar(pembayaranList, 1001, 7, 2026); // true
+ */
+export function sudahDibayar(
+  daftarPembayaran: Pembayaran[],
+  noKontrol: number,
+  bulan: number,
+  tahun: number,
+): boolean {
+  return daftarPembayaran.some(
+    (p) => p.noKontrol === noKontrol && p.bulan === bulan && p.tahun === tahun,
+  );
 }
 
 /**

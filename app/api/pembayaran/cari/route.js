@@ -36,11 +36,11 @@ export async function GET(req) {
     qP += ' ORDER BY tahun DESC, bulan DESC';
     const pemakaian = await db.query(qP, pP);
 
-    let qB = SELECT p.*, t.jenis_pelanggan, t.biaya_beban, t.tarif_kwh, pl.nama_petugas, pl.username, pl.role
+    let qB = `SELECT p.*, t.jenis_pelanggan, t.biaya_beban, t.tarif_kwh, pl.nama_petugas, pl.username, pl.role
       FROM pembayaran p
       JOIN tarif t ON p.id_tarif = t.id_tarif
       JOIN petugas_loket pl ON p.id_petugas = pl.id_petugas
-      WHERE p.no_kontrol = ?;
+      WHERE p.no_kontrol = ?`;
     const pB = [noKontrol];
     if (tahun) { qB += ' AND YEAR(p.tanggal_bayar)=?'; pB.push(tahun); }
     if (bulan) { qB += ' AND MONTH(p.tanggal_bayar)=?'; pB.push(parseInt(bulan)); }

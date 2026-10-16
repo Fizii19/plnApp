@@ -2,15 +2,14 @@
  * =============================================================================
  * lib/store.tsx
  * -----------------------------------------------------------------------------
- * Context store (React Context) yang menjadi sumber data tunggal aplikasi:
- *   - data master: pelanggan, tarif, petugas
- *   - transaksi: pemakaian, pembayaran
- *   - sesi login pengguna
+ * Context store terpusat aplikasi SIP Listrik.
  *
- * Seluruh data tinggal di memori browser dan otomatis disimpan ke
- * localStorage sehingga perubahan tetap ada saat halaman dimuat ulang.
- * Untuk menghubungkan ke database sungguhan, ganti isi aksi-aksi di bawah
- * dengan panggilan API/backend.
+ * Mengelola sesi pengguna (JWT dari MySQL) dan menyediakan helper API untuk
+ * seluruh komponen. Data TIDAK lagi disimpan di in-memory / localStorage —
+ * setiap komponen dashboard mengambil langsung dari MySQL via API routes.
+ *
+ * Sesi pengguna (peran, nama, token) tetap disimpan di localStorage agar
+ * AuthGuard dapat memeriksa rute tanpa round-trip ke server.
  * =============================================================================
  */
 "use client";
@@ -24,305 +23,224 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { verifikasiLogin } from "./auth";
 import {
-  PELANGGAN_SEED,
-  PEMBAYARAN_SEED,
-  PEMAKAIAN_SEED,
-  PETUGAS_SEED,
-  TARIF_SEED,
-} from "./mock-data";
-import type { ModeSimpan, Pembayaran, Pelanggan, Pemakaian, Petugas, Sesi, Tarif } from "./types";
+  apiFetch,
+  bacaToken,
+  hapusToken,
+  simpanToken,
+  type ApiResponse,
+} from "./api-client";
+import { PETA_HALAMAN } from "./auth";
+import type { Sesi } from "./types";
 
-/** Kunci penyimpanan data aplikasi di localStorage browser. */
-const KUNCI_PENYIMPANAN = "sistem-listrik-v1";
+/** Kunci penyimpanan objek sesi (tanpa data sensitif) di localStorage. */
+const KUNCI_SESI = "sip-listrik-sesi";
 
-/** Bentuk data yang dipertukarkan dengan localStorage. */
-interface DataTersimpan {
-  sesi: Sesi | null;
-  pelanggan: Pelanggan[];
-  tarif: Tarif[];
-  petugas: Petugas[];
-  pemakaian: Pemakaian[];
-  pembayaran: Pembayaran[];
+/**
+ * Objek sesi minimal yang tersimpan di localStorage.
+ * Token JWT disimpan terpisah di `sip-listrik-token`.
+ */
+interface SesiTersimpan {
+  peran: Sesi["peran"];
+  nama: string;
+  username: string;
+  noKontrol?: number;
+  idPetugas?: number;
 }
 
-/** Nilai yang disediakan `SistemProvider` kepada seluruh komponen konsumen. */
-export interface NilaiSistem extends DataTersimpan {
-  /** true setelah data selesai dimuat dari localStorage (aman dirender). */
+/** Nilai yang disediakan SistemProvider kepada seluruh komponen konsumen. */
+export interface NilaiSistem {
+  /** Sesi pengguna yang sedang login, atau null. */
+  sesi: Sesi | null;
+  /** true setelah data sesi selesai dimuat dari localStorage. */
   terhidrasi: boolean;
-  /** Memulai sesi baru; mengembalikan sesi bila kredensial cocok. */
-  login: (username: string, password: string) => Sesi | null;
-  /** Menghapus sesi (logout) dan kembali ke halaman login. */
+  /**
+   * Login via API MySQL. Mengembalikan sesi bila kredensial cocok.
+   * Menyimpan JWT ke localStorage secara otomatis.
+   *
+   * @param username - Username atau nomor kontrol pelanggan.
+   * @param password - Password pengguna.
+   * @returns Sesi bila berhasil, null bila gagal.
+   * @throws Error bila ada masalah jaringan.
+   */
+  login: (username: string, password: string) => Promise<Sesi | null>;
+  /**
+   * Logout: hapus JWT & sesi dari localStorage dan context.
+   */
   logout: () => void;
-  /** Menambah/mengubah data pelanggan berdasarkan nomor kontrol. */
-  simpanPelanggan: (baris: Pelanggan, mode: ModeSimpan) => void;
-  /** Menghapus data pelanggan beserta riwayatnya berdasarkan nomor kontrol. */
-  hapusPelanggan: (noKontrol: number) => void;
-  /** Menambah/mengubah data tarif berdasarkan id tarif. */
-  simpanTarif: (baris: Tarif, mode: ModeSimpan) => void;
-  /** Menghapus data tarif berdasarkan id tarif. */
-  hapusTarif: (idTarif: number) => void;
-  /** Menambah/mengubah data petugas loket berdasarkan id petugas. */
-  simpanPetugas: (baris: Petugas, mode: ModeSimpan) => void;
-  /** Menghapus data petugas loket berdasarkan id petugas. */
-  hapusPetugas: (idPetugas: number) => void;
-  /** Menambah/mengubah catatan pemakaian berdasarkan id pemakaian. */
-  simpanPemakaian: (baris: Pemakaian, mode: ModeSimpan) => void;
-  /** Menghapus catatan pemakaian berdasarkan id pemakaian. */
-  hapusPemakaian: (idPemakaian: number) => void;
-  /** Menambah/mengubah transaksi pembayaran berdasarkan id pembayaran. */
-  simpanPembayaran: (baris: Pembayaran, mode: ModeSimpan) => void;
-  /** Menghapus transaksi pembayaran berdasarkan id pembayaran. */
-  hapusPembayaran: (idPembayaran: number) => void;
+  /**
+   * Wrapper fetch yang sudah menyisipkan token Authorization.
+   * Dipakai komponen untuk memanggil API routes.
+   */
+  apiFetch: typeof apiFetch;
 }
 
 const SistemContext = createContext<NilaiSistem | null>(null);
 
 /**
- * Menambah atau mengganti satu baris pada sebuah daftar berdasarkan kunci.
+ * Hook untuk mengakses store dari komponen mana pun.
+ * Harus dipanggil di dalam SistemProvider.
  *
- * @param daftar - Daftar data saat ini.
- * @param kunci - Nama field primary key.
- * @param nilai - Baris baru (tambah) atau hasil edit (ubah).
- * @param mode - "tambah" untuk menempel di akhir, "ubah" untuk menimpa.
- * @returns Daftar baru (immutabel) hasil penyimpanan.
+ * @returns Nilai store sistem.
+ * @throws Error bila dipanggil di luar SistemProvider.
  */
-function upsertDaftar<T>(daftar: T[], kunci: keyof T, nilai: T, mode: ModeSimpan): T[] {
-  if (mode === "tambah") {
-    return [...daftar, nilai];
-  }
-  return daftar.map((item) => (item[kunci] === nilai[kunci] ? nilai : item));
+export function useSistem(): NilaiSistem {
+  const ctx = useContext(SistemContext);
+  if (!ctx) throw new Error("useSistem harus dipanggil di dalam <SistemProvider>");
+  return ctx;
 }
 
 /**
- * Menghapus satu baris dari sebuah daftar berdasarkan kunci.
+ * Membaca sesi dari localStorage (bukan data sensitif, hanya metadata).
  *
- * @param daftar - Daftar data saat ini.
- * @param kunci - Nama field primary key.
- * @param nilaiKunci - Nilai kunci baris yang ingin dihapus.
- * @returns Daftar baru tanpa baris yang dimaksud.
+ * @returns Sesi yang tersimpan, atau null.
  */
-function hapusDariDaftar<T>(daftar: T[], kunci: keyof T, nilaiKunci: T[keyof T]): T[] {
-  return daftar.filter((item) => item[kunci] !== nilaiKunci);
-}
-
-/**
- * Menghasilkan id auto-increment berikutnya dari sebuah daftar.
- * Berguna untuk mengusulkan id baris baru pada form CRUD.
- *
- * @param daftar - Daftar data dengan field kunci bertipe angka.
- * @param kunci - Nama field kunci numerik.
- * @returns Nilai id terbesar + 1 (dimulai dari 1 bila daftar kosong).
- *
- * @example idBerikutnya([{ idPemakaian: 3 }], "idPemakaian"); // 4
- */
-export function idBerikutnya<T>(daftar: T[], kunci: keyof T): number {
-  const nilai = daftar.map((item) => Number(item[kunci]) || 0);
-  return Math.max(0, ...nilai) + 1;
-}
-
-/**
- * Membaca data tersimpan dari localStorage, atau memakai seed bila kosong/rusak.
- *
- * @returns Objek data lengkap siap dipakai provider.
- */
-function muatDataAwal(): DataTersimpan {
-  const seed: DataTersimpan = {
-    sesi: null,
-    pelanggan: PELANGGAN_SEED,
-    tarif: TARIF_SEED,
-    petugas: PETUGAS_SEED,
-    pemakaian: PEMAKAIAN_SEED,
-    pembayaran: PEMBAYARAN_SEED,
-  };
-
-  // localStorage hanya tersedia di browser; jangan sentuh saat prerender.
-  if (typeof window === "undefined") return seed;
-
+function bacaSesiLokal(): Sesi | null {
+  if (typeof window === "undefined") return null;
   try {
-    const mentah = window.localStorage.getItem(KUNCI_PENYIMPANAN);
-    if (!mentah) return seed;
-    const data = JSON.parse(mentah) as Partial<DataTersimpan>;
-    return {
-      sesi: data.sesi ?? null,
-      pelanggan: data.pelanggan ?? seed.pelanggan,
-      tarif: data.tarif ?? seed.tarif,
-      petugas: data.petugas ?? seed.petugas,
-      pemakaian: data.pemakaian ?? seed.pemakaian,
-      pembayaran: data.pembayaran ?? seed.pembayaran,
-    };
+    const raw = window.localStorage.getItem(KUNCI_SESI);
+    if (!raw) return null;
+    const parsed: SesiTersimpan = JSON.parse(raw);
+    if (!parsed.peran || !parsed.nama) return null;
+    return parsed as Sesi;
   } catch {
-    // Data rusak/tidak valid -> kembali ke seed agar aplikasi tetap jalan.
-    return seed;
+    return null;
   }
 }
 
 /**
- * Provider context store; bungkus seluruh aplikasi pada root layout.
+ * Menyimpan metadata sesi ke localStorage (bukan token).
  *
- * @param props.children - Komponen anak yang membutuhkan akses data.
- * @returns Provider `SistemContext` yang membungkus children.
+ * @param sesi - Objek sesi tanpa data sensitif.
+ */
+function simpanSesiLokal(sesi: Sesi): void {
+  if (typeof window === "undefined") return;
+  const data: SesiTersimpan = {
+    peran: sesi.peran,
+    nama: sesi.nama,
+    username: sesi.username,
+    noKontrol: sesi.noKontrol,
+    idPetugas: sesi.idPetugas,
+  };
+  window.localStorage.setItem(KUNCI_SESI, JSON.stringify(data));
+}
+
+/**
+ * Menghapus sesi dari localStorage saat logout.
+ */
+function hapusSesiLokal(): void {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(KUNCI_SESI);
+}
+
+/**
+ * Provider context store.
+ * Bungkus seluruh aplikasi pada root layout.
+ *
+ * @param props.children - Komponen anak yang membutuhkan akses store.
+ * @returns Provider SistemContext yang membungkus children.
  */
 export function SistemProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<DataTersimpan>(() => ({
-    sesi: null,
-    pelanggan: PELANGGAN_SEED,
-    tarif: TARIF_SEED,
-    petugas: PETUGAS_SEED,
-    pemakaian: PEMAKAIAN_SEED,
-    pembayaran: PEMBAYARAN_SEED,
-  }));
+  const [sesi, setSesi] = useState<Sesi | null>(null);
   const [terhidrasi, setTerhidrasi] = useState(false);
 
-  // Muat data dari localStorage setelah komponen terpasang di browser
-  // (tidak saat prerender, agar tidak terjadi mismatch hydration).
+  /**
+   * Memuat sesi dari localStorage dan memvalidasi token saat komponen dipasang.
+   * Bila token kadaluarsa (401 dari /api/auth/me), sesi dihapus.
+   */
   useEffect(() => {
-    setData(muatDataAwal());
-    setTerhidrasi(true);
-  }, []);
+    const sesiLokal = bacaSesiLokal();
+    const token = bacaToken();
 
-  // Persistensikan data ke localStorage setiap kali berubah (setelah hidrasi).
-  useEffect(() => {
-    if (!terhidrasi || typeof window === "undefined") return;
-    try {
-      window.localStorage.setItem(KUNCI_PENYIMPANAN, JSON.stringify(data));
-    } catch {
-      // Kuota penuh/diabaikan: aplikasi tetap berjalan tanpa persistensi.
+    if (!sesiLokal || !token) {
+      setTerhidrasi(true);
+      return;
     }
-  }, [data, terhidrasi]);
 
-  /** Memperbarui seluruh objek data dengan hasil mutasi parsial. */
-  const perbarui = useCallback((bagian: Partial<DataTersimpan>) => {
-    setData((sebelumnya) => ({ ...sebelumnya, ...bagian }));
+    // Validasi token ke server untuk memastikan belum kadaluarsa
+    apiFetch<{ username: string }>("/api/auth/me")
+      .then((res) => {
+        if (res.success) {
+          setSesi(sesiLokal);
+        } else {
+          // Token tidak valid / kadaluarsa
+          hapusToken();
+          hapusSesiLokal();
+        }
+      })
+      .catch(() => {
+        // Bila offline, percayai sesi lokal sementara
+        setSesi(sesiLokal);
+      })
+      .finally(() => setTerhidrasi(true));
   }, []);
 
+  /**
+   * Login via API MySQL.
+   * Menyimpan JWT dan metadata sesi ke localStorage.
+   *
+   * @param username - Username atau nomor kontrol.
+   * @param password - Password plain-text (tidak disimpan).
+   * @returns Sesi bila berhasil, null bila gagal.
+   */
   const login = useCallback(
-    (username: string, password: string): Sesi | null => {
-      const sesi = verifikasiLogin(username, password, data.petugas, data.pelanggan);
-      if (sesi) perbarui({ sesi });
-      return sesi;
+    async (username: string, password: string): Promise<Sesi | null> => {
+      const res = await apiFetch<{
+        token: string;
+        user: { id: number | null; nama: string; username: string; role: string; noKontrol?: number };
+      }>("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!res.success || !res.data) return null;
+
+      const { token, user } = res.data;
+      simpanToken(token);
+
+      const peranMap: Record<string, Sesi["peran"]> = {
+        admin: "admin",
+        petugas: "petugas",
+        pelanggan: "pelanggan",
+      };
+
+      const sesiKini: Sesi = {
+        peran: peranMap[user.role] ?? "pelanggan",
+        nama: user.nama,
+        username: user.username,
+        noKontrol: user.noKontrol,
+        idPetugas: user.id ?? undefined,
+      };
+
+      simpanSesiLokal(sesiKini);
+      setSesi(sesiKini);
+      return sesiKini;
     },
-    [data.petugas, data.pelanggan, perbarui],
-  );
-
-  const logout = useCallback(() => perbarui({ sesi: null }), [perbarui]);
-
-  const simpanPelanggan = useCallback(
-    (baris: Pelanggan, mode: ModeSimpan) =>
-      setData((d) => ({ ...d, pelanggan: upsertDaftar(d.pelanggan, "noKontrol", baris, mode) })),
     [],
   );
 
-  const hapusPelanggan = useCallback(
-    (noKontrol: number) =>
-      setData((d) => ({
-        ...d,
-        pelanggan: hapusDariDaftar(d.pelanggan, "noKontrol", noKontrol),
-        // Ikut bersihkan riwayat milik pelanggan yang dihapus (cascading).
-        pemakaian: hapusDariDaftar(d.pemakaian, "noKontrol", noKontrol),
-        pembayaran: hapusDariDaftar(d.pembayaran, "noKontrol", noKontrol),
-      })),
-    [],
-  );
-
-  const simpanTarif = useCallback(
-    (baris: Tarif, mode: ModeSimpan) =>
-      setData((d) => ({ ...d, tarif: upsertDaftar(d.tarif, "idTarif", baris, mode) })),
-    [],
-  );
-
-  const hapusTarif = useCallback(
-    (idTarif: number) => setData((d) => ({ ...d, tarif: hapusDariDaftar(d.tarif, "idTarif", idTarif) })),
-    [],
-  );
-
-  const simpanPetugas = useCallback(
-    (baris: Petugas, mode: ModeSimpan) =>
-      setData((d) => ({ ...d, petugas: upsertDaftar(d.petugas, "idPetugas", baris, mode) })),
-    [],
-  );
-
-  const hapusPetugas = useCallback(
-    (idPetugas: number) =>
-      setData((d) => ({ ...d, petugas: hapusDariDaftar(d.petugas, "idPetugas", idPetugas) })),
-    [],
-  );
-
-  const simpanPemakaian = useCallback(
-    (baris: Pemakaian, mode: ModeSimpan) =>
-      setData((d) => ({ ...d, pemakaian: upsertDaftar(d.pemakaian, "idPemakaian", baris, mode) })),
-    [],
-  );
-
-  const hapusPemakaian = useCallback(
-    (idPemakaian: number) =>
-      setData((d) => ({ ...d, pemakaian: hapusDariDaftar(d.pemakaian, "idPemakaian", idPemakaian) })),
-    [],
-  );
-
-  const simpanPembayaran = useCallback(
-    (baris: Pembayaran, mode: ModeSimpan) =>
-      setData((d) => ({ ...d, pembayaran: upsertDaftar(d.pembayaran, "idPembayaran", baris, mode) })),
-    [],
-  );
-
-  const hapusPembayaran = useCallback(
-    (idPembayaran: number) =>
-      setData((d) => ({ ...d, pembayaran: hapusDariDaftar(d.pembayaran, "idPembayaran", idPembayaran) })),
-    [],
-  );
+  /**
+   * Logout: menghapus token dan sesi.
+   */
+  const logout = useCallback((): void => {
+    hapusToken();
+    hapusSesiLokal();
+    setSesi(null);
+  }, []);
 
   const nilai = useMemo<NilaiSistem>(
     () => ({
-      ...data,
+      sesi,
       terhidrasi,
       login,
       logout,
-      simpanPelanggan,
-      hapusPelanggan,
-      simpanTarif,
-      hapusTarif,
-      simpanPetugas,
-      hapusPetugas,
-      simpanPemakaian,
-      hapusPemakaian,
-      simpanPembayaran,
-      hapusPembayaran,
+      apiFetch,
     }),
-    [
-      data,
-      terhidrasi,
-      login,
-      logout,
-      simpanPelanggan,
-      hapusPelanggan,
-      simpanTarif,
-      hapusTarif,
-      simpanPetugas,
-      hapusPetugas,
-      simpanPemakaian,
-      hapusPemakaian,
-      simpanPembayaran,
-      hapusPembayaran,
-    ],
+    [sesi, terhidrasi, login, logout],
   );
 
   return <SistemContext.Provider value={nilai}>{children}</SistemContext.Provider>;
 }
 
-/**
- * Hook untuk mengakses seluruh data & aksi sistem dari komponen klien.
- *
- * @throws Error bila dipakai di luar `SistemProvider`.
- * @returns Nilai context store aplikasi.
- *
- * @example const { pelanggan, simpanPelanggan } = useSistem();
- */
-export function useSistem(): NilaiSistem {
-  const konteks = useContext(SistemContext);
-  if (!konteks) {
-    throw new Error("useSistem() harus dipakai di dalam <SistemProvider>.");
-  }
-  return konteks;
-}
+// Alias untuk kompatibilitas mundur dengan komponen lain
+export { useSistem as default };

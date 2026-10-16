@@ -2,76 +2,57 @@
  * =============================================================================
  * components/crud-table.tsx
  * -----------------------------------------------------------------------------
- * Tabel data generik lengkap dengan form tambah/ubah (modal) dan aksi hapus.
- * Satu komponen ini dipakai seluruh menu CRUD admin (pelanggan, tarif,
- * petugas, pemakaian, pembayaran) sehingga perilaku & tampilannya konsisten.
+ * Tabel data generik yang didesain ulang dengan Shadcn UI dan Lucide React.
+ * Mendukung CRUD lengkap: tampil tabel, form tambah/ubah, dan konfirmasi hapus.
  * =============================================================================
  */
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
+import { Plus, Pencil, Trash2, Search, AlertCircle } from "lucide-react";
 import Modal from "./modal";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import type { ModeSimpan, NilaiForm } from "@/lib/types";
 
 /** Konfigurasi satu kolom tabel. */
 export interface KolomTabel<T> {
-  /** Nama field yang ditampilkan (fallback bila `render` tidak diberikan). */
   key: string;
-  /** Judul kepala kolom. */
   label: string;
-  /** Fungsi render kustom, contoh: format Rupiah atau badge status. */
   render?: (baris: T) => ReactNode;
-  /** Perataan teks kolom, default "kiri". */
   align?: "kiri" | "kanan" | "tengah";
 }
 
 /** Konfigurasi satu bidang pada form tambah/ubah. */
 export interface BidangForm<T> {
-  /** Nama field data yang terikat bidang ini. */
   name: string;
-  /** Label input pada form. */
   label: string;
-  /** Jenis input; "number" otomatis dikonversi ke angka saat disimpan. */
   type: "text" | "number" | "select" | "textarea";
-  /** Opsi dropdown, wajib diisi bila type = "select". */
   options?: { value: string; label: string }[];
-  /** Menandai bidang wajib diisi. */
   required?: boolean;
-  /** Teks petunjuk saat input kosong. */
   placeholder?: string;
-  /** Membuat bidang tidak dapat diubah (mis. hasil hitungan otomatis). */
   readOnly?: boolean;
-  /** Tipe data asli field pada model (untuk konversi number). */
   tipeData?: "angka" | "teks";
 }
 
 /** Properti tabel CRUD. */
 export interface CrudTableProps<T> {
-  /** Judul tabel. */
   judul: string;
-  /** Penjelasan singkat di bawah judul. */
   deskripsi?: string;
-  /** Data yang akan ditampilkan. */
   data: T[];
-  /** Konfigurasi kolom tabel. */
   kolom: KolomTabel<T>[];
-  /** Konfigurasi bidang form tambah/ubah. */
   bidang: BidangForm<T>[];
-  /** Nama field primary key data. */
   kunci: keyof T & string;
-  /** Template baris kosong untuk mode tambah (berisi id usulan). */
   kosong: T;
-  /** Label tombol tambah, default "Tambah". */
   labelTambah?: string;
-  /** Callback simpan (tambah/ubah) dari halaman induk. */
   simpan: (baris: T, mode: ModeSimpan) => void;
-  /** Callback hapus dari halaman induk. */
   hapus: (baris: T) => void;
-  /** Pesan saat tidak ada data. */
   pesanKosong?: string;
-  /** Menghitung ulang bidang turunan setiap nilai form berubah. */
   hitungOtomatis?: (nilai: NilaiForm) => NilaiForm;
-  /** Menghasilkan pesan konfirmasi hapus yang lebih informatif. */
   konfirmasiHapus?: (baris: T) => string;
 }
 
@@ -85,10 +66,10 @@ function keNilaiForm<T>(baris: T): NilaiForm {
 }
 
 /**
- * Merender tabel data + tombol aksi dan modal form tambah/ubah.
+ * Merender tabel CRUD lengkap dengan form modal tambah/ubah dan aksi hapus.
  *
  * @param props - Lihat `CrudTableProps`.
- * @returns Elemen tabel CRUD lengkap.
+ * @returns Elemen tabel CRUD.
  */
 export default function CrudTable<T>({
   judul,
@@ -107,12 +88,10 @@ export default function CrudTable<T>({
 }: CrudTableProps<T>) {
   const [form, setForm] = useState<{ mode: ModeSimpan; nilai: NilaiForm } | null>(null);
   const [galat, setGalat] = useState<string>("");
+  const [cari, setCari] = useState("");
 
   /**
    * Membuka modal form untuk mode tambah atau ubah.
-   *
-   * @param mode - "tambah" memakai template kosong, "ubah" memakai baris terpilih.
-   * @param baris - Baris yang diubah (diabaikan pada mode tambah).
    */
   const bukaForm = (mode: ModeSimpan, baris?: T) => {
     const nilai = keNilaiForm(baris ?? kosong);
@@ -122,9 +101,6 @@ export default function CrudTable<T>({
 
   /**
    * Memperbarui satu bidang form, lalu menghitung ulang bidang turunan.
-   *
-   * @param nama - Nama field yang diubah.
-   * @param nilai - Nilai input terbaru.
    */
   const ubahBidang = (nama: string, nilai: string) => {
     setForm((sebelumnya) => {
@@ -135,15 +111,12 @@ export default function CrudTable<T>({
   };
 
   /**
-   * Menyimpan isi form ke store (validasi dilakukan terlebih dahulu).
-   *
-   * @param event - Event submit form.
+   * Menyimpan isi form ke store (validasi terlebih dahulu).
    */
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!form) return;
 
-    // Validasi bidang wajib isi.
     const belumTerisi = bidang
       .filter((b) => b.required && !form.nilai[b.name]?.trim())
       .map((b) => b.label);
@@ -152,7 +125,6 @@ export default function CrudTable<T>({
       return;
     }
 
-    // Konversi string form menjadi tipe data asli sebelum disimpan.
     const rekaman: Record<string, unknown> = {};
     for (const b of bidang) {
       const mentah = form.nilai[b.name] ?? "";
@@ -166,78 +138,126 @@ export default function CrudTable<T>({
 
   /**
    * Menghapus baris setelah dikonfirmasi pengguna.
-   *
-   * @param baris - Baris yang akan dihapus.
    */
   const mintaHapus = (baris: T) => {
     const pesan = konfirmasiHapus?.(baris) ?? "Yakin ingin menghapus data ini?";
     if (window.confirm(pesan)) hapus(baris);
   };
 
-  /** Kelas perataan kolom sesuai konfigurasi. */
+  /** Kelas perataan kolom. */
   const perataan = (align?: KolomTabel<T>["align"]) =>
     align === "kanan" ? "text-right" : align === "tengah" ? "text-center" : "text-left";
 
+  /** Filter data berdasarkan pencarian */
+  const dataFiltered = cari.trim()
+    ? data.filter((baris) => {
+        const str = JSON.stringify(baris).toLowerCase();
+        return str.includes(cari.toLowerCase());
+      })
+    : data;
+
   return (
     <section className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+      {/* Header tabel */}
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
         <div>
           <h2 className="font-semibold text-slate-800">{judul}</h2>
           {deskripsi ? <p className="mt-0.5 text-sm text-slate-500">{deskripsi}</p> : null}
         </div>
-        <button
-          type="button"
-          onClick={() => bukaForm("tambah")}
-          className="rounded-xl bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300"
-        >
-          + {labelTambah}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Pencarian */}
+          <div className="relative hidden sm:block">
+            <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
+            <Input
+              type="text"
+              value={cari}
+              onChange={(e) => setCari(e.target.value)}
+              placeholder="Cari..."
+              className="pl-8 h-8 text-xs w-40"
+            />
+          </div>
+          <Button
+            size="sm"
+            onClick={() => bukaForm("tambah")}
+            className="gap-1.5"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            {labelTambah}
+          </Button>
+        </div>
       </header>
 
+      {/* Tabel data */}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-100 bg-slate-50 text-slate-500">
-              {kolom.map((kolom_) => (
-                <th key={kolom_.key} className={`px-5 py-3 font-medium ${perataan(kolom_.align)}`}>
-                  {kolom_.label}
+            <tr className="border-b border-slate-100 bg-slate-50/80">
+              {kolom.map((k) => (
+                <th
+                  key={k.key}
+                  className={cn(
+                    "px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500",
+                    perataan(k.align),
+                  )}
+                >
+                  {k.label}
                 </th>
               ))}
-              <th className="px-5 py-3 text-right font-medium">Aksi</th>
+              <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Aksi
+              </th>
             </tr>
           </thead>
           <tbody>
-            {data.length === 0 ? (
+            {dataFiltered.length === 0 ? (
               <tr>
-                <td colSpan={kolom.length + 1} className="px-5 py-10 text-center text-slate-400">
-                  {pesanKosong}
+                <td colSpan={kolom.length + 1} className="px-5 py-12 text-center">
+                  <div className="flex flex-col items-center gap-2 text-slate-400">
+                    <Search className="h-8 w-8 opacity-30" />
+                    <p className="text-sm">{cari ? `Tidak ada hasil untuk "${cari}"` : pesanKosong}</p>
+                  </div>
                 </td>
               </tr>
             ) : (
-              data.map((baris) => (
-                <tr key={String(baris[kunci])} className="border-b border-slate-50 hover:bg-slate-50/60">
-                  {kolom.map((kolom_) => (
-                    <td key={kolom_.key} className={`px-5 py-3 ${perataan(kolom_.align)}`}>
-                      {kolom_.render
-                        ? kolom_.render(baris)
-                        : String((baris as Record<string, unknown>)[kolom_.key] ?? "-")}
+              dataFiltered.map((baris) => (
+                <tr
+                  key={String(baris[kunci])}
+                  className="group border-b border-slate-50 transition-colors hover:bg-slate-50"
+                >
+                  {kolom.map((k) => (
+                    <td
+                      key={k.key}
+                      className={cn(
+                        "px-4 py-3 text-slate-700",
+                        perataan(k.align),
+                      )}
+                    >
+                      {k.render
+                        ? k.render(baris)
+                        : String((baris as Record<string, unknown>)[k.key] ?? "-")}
                     </td>
                   ))}
-                  <td className="px-5 py-3 text-right">
-                    <button
-                      type="button"
-                      onClick={() => bukaForm("ubah", baris)}
-                      className="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-200"
-                    >
-                      Ubah
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => mintaHapus(baris)}
-                      className="ml-2 rounded-lg bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600 transition hover:bg-red-100"
-                    >
-                      Hapus
-                    </button>
+                  <td className="px-4 py-3">
+                    <div className="flex items-center justify-end gap-1.5">
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => bukaForm("ubah", baris)}
+                        title="Ubah"
+                        className="text-slate-500 hover:text-slate-800 hover:bg-slate-100"
+                      >
+                        <Pencil className="h-3.5 w-3.5" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => mintaHapus(baris)}
+                        title="Hapus"
+                        className="text-red-400 hover:text-red-600 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -246,81 +266,83 @@ export default function CrudTable<T>({
         </table>
       </div>
 
+      {/* Footer info jumlah baris */}
+      <div className="border-t border-slate-100 px-5 py-2.5">
+        <p className="text-xs text-slate-400">
+          Menampilkan {dataFiltered.length} dari {data.length} data
+          {cari ? ` (filter: "${cari}")` : ""}
+        </p>
+      </div>
+
+      {/* Modal form tambah/ubah */}
       {form ? (
         <Modal
           judul={form.mode === "tambah" ? `Tambah ${judul}` : `Ubah ${judul}`}
           onClose={() => setForm(null)}
           footer={
             <>
-              <button
+              <Button
                 type="button"
+                variant="outline"
                 onClick={() => setForm(null)}
-                className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
               >
                 Batal
-              </button>
-              <button
-                type="submit"
-                form="form-crud"
-                className="rounded-xl bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-amber-300"
-              >
-                Simpan
-              </button>
+              </Button>
+              <Button type="submit" form="form-crud">
+                Simpan Perubahan
+              </Button>
             </>
           }
         >
           <form id="form-crud" onSubmit={submitForm} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {galat ? (
-              <p className="col-span-full rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+              <div className="col-span-full flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                 {galat}
-              </p>
+              </div>
             ) : null}
 
             {bidang.map((b) => (
-              <label key={b.name} className="flex flex-col gap-1.5 text-sm">
-                <span className="font-medium text-slate-600">
+              <div key={b.name} className="flex flex-col gap-1.5">
+                <Label htmlFor={`field-${b.name}`}>
                   {b.label}
                   {b.required ? <span className="ml-1 text-red-500">*</span> : null}
-                </span>
+                  {b.readOnly ? (
+                    <span className="ml-1.5 text-[10px] font-normal text-slate-400">otomatis</span>
+                  ) : null}
+                </Label>
 
                 {b.type === "select" ? (
-                  <select
-                    name={b.name}
+                  <Select
+                    id={`field-${b.name}`}
                     value={form.nilai[b.name] ?? ""}
                     disabled={b.readOnly}
                     onChange={(e) => ubahBidang(b.name, e.target.value)}
-                    className="rounded-xl border border-slate-300 px-3 py-2 text-slate-800 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 disabled:bg-slate-100"
-                  >
-                    <option value="" disabled>
-                      {b.placeholder ?? "— pilih —"}
-                    </option>
-                    {b.options?.map((opsi) => (
-                      <option key={opsi.value} value={opsi.value}>
-                        {opsi.label}
-                      </option>
-                    ))}
-                  </select>
+                    options={[
+                      { value: "", label: b.placeholder ?? "— pilih —" },
+                      ...(b.options ?? []),
+                    ]}
+                  />
                 ) : b.type === "textarea" ? (
-                  <textarea
-                    name={b.name}
+                  <Textarea
+                    id={`field-${b.name}`}
                     value={form.nilai[b.name] ?? ""}
                     placeholder={b.placeholder}
                     rows={3}
                     onChange={(e) => ubahBidang(b.name, e.target.value)}
-                    className="rounded-xl border border-slate-300 px-3 py-2 text-slate-800 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100"
                   />
                 ) : (
-                  <input
-                    name={b.name}
+                  <Input
+                    id={`field-${b.name}`}
                     type={b.type}
                     value={form.nilai[b.name] ?? ""}
                     placeholder={b.placeholder}
                     readOnly={b.readOnly}
                     onChange={(e) => ubahBidang(b.name, e.target.value)}
-                    className="rounded-xl border border-slate-300 px-3 py-2 text-slate-800 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-100 read-only:bg-slate-100 read-only:text-slate-500"
+                    className={b.readOnly ? "bg-slate-50 text-slate-400 cursor-not-allowed" : ""}
                   />
                 )}
-              </label>
+              </div>
             ))}
           </form>
         </Modal>

@@ -2,35 +2,45 @@
  * =============================================================================
  * components/rekening-doc.tsx
  * -----------------------------------------------------------------------------
- * Dokumen "Rekening Listrik" yang dicetak petugas loket. Komponen yang sama
- * dipakai dua kali: sebagai pratinjau di layar (modal) dan sebagai area cetak
- * (`#area-cetak`, hanya tampil saat print).
+ * Dokumen Rekening Listrik yang didesain ulang. Tampilan profesional dengan
+ * Lucide icons untuk elemen visual dan badge status. Dipakai dua kali:
+ * pratinjau layar (modal) dan area cetak (#area-cetak).
  * =============================================================================
  */
 
+import {
+  Zap,
+  User,
+  MapPin,
+  Phone,
+  Tag,
+  Calendar,
+  Gauge,
+  ArrowRight,
+  Receipt,
+  CheckCircle2,
+  Banknote,
+  Building2,
+} from "lucide-react";
 import { formatAngka, formatRupiah, formatTanggal, formatPeriode } from "@/lib/format";
 import { hitungRincianTagihan } from "@/lib/billing";
 import type { Pelanggan, Pemakaian, Tarif } from "@/lib/types";
 
 /** Properti dokumen rekening. */
 export interface RekeningDocProps {
-  /** Data pelanggan pemilik rekening. */
   pelanggan: Pelanggan;
-  /** Catatan pemakaian periode yang dicetak. */
   pemakaian: Pemakaian;
-  /** Tarif yang berlaku untuk pelanggan tersebut. */
   tarif?: Tarif;
-  /** Nama petugas loket yang menerbitkan (ditandatangani). */
   namaPetugas?: string;
-  /** Tanggal cetak dalam format ISO (YYYY-MM-DD). */
   tanggalCetak: string;
 }
 
 /**
- * Merender dokumen rekening listrik satu periode.
+ * Merender dokumen rekening listrik satu periode yang komunikatif.
+ * Menggunakan Lucide icons untuk ikon identitas, meter, dan biaya.
  *
  * @param props - Lihat `RekeningDocProps`.
- * @returns Elemen dokumen rekening berkop surat.
+ * @returns Elemen dokumen rekening listrik.
  */
 export default function RekeningDoc({
   pelanggan,
@@ -42,120 +52,206 @@ export default function RekeningDoc({
   const rincian = hitungRincianTagihan(tarif, pemakaian.meterAwal, pemakaian.meterAkhir);
 
   return (
-    <div className="bg-white p-8 text-slate-800">
-      {/* Kop surat dokumen */}
-      <header className="flex items-start gap-4 border-b-2 border-slate-800 pb-4">
-        <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-amber-400 text-2xl">
-          ⚡
-        </span>
-        <div className="flex-1">
-          <h1 className="text-lg font-bold uppercase tracking-wide">SIP Listrik</h1>
-          <p className="text-sm text-slate-600">Sistem Pembayaran Listrik — Rayon Demo</p>
-          <p className="text-xs text-slate-500">Jl. Listrik Raya No. 1, Kel. Sukamaju</p>
-        </div>
-        <div className="text-right text-xs text-slate-600">
-          <p className="font-semibold">No. Rekening</p>
-          <p className="font-mono text-sm font-bold">
-            {String(pelanggan.noKontrol).padStart(6, "0")}
-          </p>
-          <p className="mt-1">Tanggal: {formatTanggal(tanggalCetak) || "-"}</p>
-        </div>
-      </header>
-
-      {/* Identitas pelanggan & periode */}
-      <section className="mt-5 grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
-        <div>
-          <p className="text-xs uppercase tracking-wide text-slate-400">Pelanggan</p>
-          <p className="font-semibold">{pelanggan.nama}</p>
-          <p className="text-slate-600">{pelanggan.alamat}</p>
-          <p className="text-slate-600">
-            No. Telp: {pelanggan.noTlp} • Jenis: {pelanggan.jenis}
-          </p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs uppercase tracking-wide text-slate-400">Periode</p>
-          <p className="font-semibold">{formatPeriode(pemakaian.bulan, pemakaian.tahun)}</p>
-          <p className="text-slate-600">
-            Tarif: {tarif ? `${formatRupiah(tarif.tarifKwh)}/kWh` : "-"}
-          </p>
-          <p className="text-slate-600">
-            Biaya beban: {tarif ? formatRupiah(tarif.biayaBeban) : "-"}
-          </p>
-        </div>
-      </section>
-
-      {/* Rincian pembacaan meter */}
-      <table className="mt-5 w-full border-collapse text-sm">
-        <thead>
-          <tr className="bg-slate-100 text-left text-xs uppercase tracking-wide text-slate-500">
-            <th className="border border-slate-300 px-3 py-2">Uraian</th>
-            <th className="border border-slate-300 px-3 py-2 text-right">Nilai</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border border-slate-300 px-3 py-2">Meter Awal</td>
-            <td className="border border-slate-300 px-3 py-2 text-right">
-              {formatAngka(pemakaian.meterAwal)}
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-slate-300 px-3 py-2">Meter Akhir</td>
-            <td className="border border-slate-300 px-3 py-2 text-right">
-              {formatAngka(pemakaian.meterAkhir)}
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-slate-300 px-3 py-2 font-semibold">Jumlah Pakai (kWh)</td>
-            <td className="border border-slate-300 px-3 py-2 text-right font-semibold">
-              {rincian.jumlahPakai}
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-slate-300 px-3 py-2">Biaya Beban</td>
-            <td className="border border-slate-300 px-3 py-2 text-right">
-              {formatRupiah(rincian.biayaBeban)}
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-slate-300 px-3 py-2">
-              Biaya Pemakaian ({rincian.jumlahPakai} kWh x{" "}
-              {tarif ? formatRupiah(tarif.tarifKwh) : "-"})
-            </td>
-            <td className="border border-slate-300 px-3 py-2 text-right">
-              {formatRupiah(rincian.biayaPemakaian)}
-            </td>
-          </tr>
-          <tr className="bg-amber-50">
-            <td className="border border-slate-300 px-3 py-2 font-bold uppercase">Total Tagihan</td>
-            <td className="border border-slate-300 px-3 py-2 text-right text-base font-bold">
-              {formatRupiah(rincian.total)}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      {/* Tanda tangan */}
-      <footer className="mt-8 flex items-end justify-between text-sm">
-        <div>
-          <p className="text-xs text-slate-500">Diterima oleh,</p>
-          <div className="mt-10 w-48 border-t border-slate-400 text-center">
-            <p className="pt-1 font-semibold">{namaPetugas}</p>
-            <p className="text-xs text-slate-500">Petugas Loket</p>
+    <div className="bg-white text-slate-800 font-sans" style={{ fontFamily: "system-ui, sans-serif" }}>
+      {/* ───── KOP SURAT ───── */}
+      <div className="bg-gradient-to-r from-amber-400 to-orange-500 px-8 py-6">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 ring-2 ring-white/40">
+              <Zap className="h-8 w-8 text-white" fill="currentColor" />
+            </div>
+            <div>
+              <h1 className="text-xl font-extrabold text-white tracking-wide">SIP LISTRIK</h1>
+              <p className="text-sm text-amber-100">Sistem Informasi Pembayaran Listrik</p>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <Building2 className="h-3 w-3 text-amber-200" />
+                <p className="text-xs text-amber-200">Rayon Demo — Kel. Sukamaju</p>
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="inline-flex items-center gap-1.5 rounded-xl bg-white/20 px-3 py-1.5 ring-1 ring-white/30">
+              <Receipt className="h-3.5 w-3.5 text-white" />
+              <span className="text-xs font-bold text-white uppercase tracking-wide">Rekening Listrik</span>
+            </div>
+            <p className="mt-2 text-right font-mono text-2xl font-extrabold text-white">
+              {String(pelanggan.noKontrol).padStart(8, "0")}
+            </p>
+            <p className="text-xs text-amber-200">Nomor Rekening</p>
           </div>
         </div>
-        <div className="text-right">
-          <p className="text-xs text-slate-500">Pelanggan,</p>
-          <div className="mt-10 w-48 border-t border-slate-400 text-center">
-            <p className="pt-1 font-semibold">{pelanggan.nama}</p>
-            <p className="text-xs text-slate-500">No. {pelanggan.noKontrol}</p>
+      </div>
+
+      <div className="px-8 py-6 space-y-5">
+        {/* ───── IDENTITAS PELANGGAN & PERIODE ───── */}
+        <div className="grid grid-cols-2 gap-6 rounded-xl border border-slate-200 bg-slate-50 p-5">
+          {/* Identitas */}
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Data Pelanggan
+            </p>
+            <div className="flex items-start gap-2">
+              <User className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
+              <div>
+                <p className="font-bold text-slate-800">{pelanggan.nama}</p>
+                <p className="text-xs text-slate-500">
+                  Jenis:{" "}
+                  <span className="font-semibold text-amber-600">{pelanggan.jenis}</span>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+              <p className="text-sm text-slate-600">{pelanggan.alamat}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4 shrink-0 text-slate-400" />
+              <p className="text-sm text-slate-600">{pelanggan.noTlp || "-"}</p>
+            </div>
+          </div>
+
+          {/* Periode & tarif */}
+          <div className="space-y-2">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Detail Tagihan
+            </p>
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4 shrink-0 text-amber-500" />
+              <div>
+                <p className="font-bold text-slate-800">
+                  {formatPeriode(pemakaian.bulan, pemakaian.tahun)}
+                </p>
+                <p className="text-xs text-slate-500">Periode tagihan</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Tag className="h-4 w-4 shrink-0 text-slate-400" />
+              <div>
+                <p className="text-sm text-slate-600">
+                  {tarif ? formatRupiah(tarif.tarifKwh) : "-"}{" "}
+                  <span className="text-slate-400">/ kWh</span>
+                </p>
+                <p className="text-xs text-slate-500">
+                  Biaya beban {tarif ? formatRupiah(tarif.biayaBeban) : "-"}/bln
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4 shrink-0 text-slate-400" />
+              <p className="text-sm text-slate-600">
+                Diterbitkan: {formatTanggal(tanggalCetak) || "-"}
+              </p>
+            </div>
           </div>
         </div>
-      </footer>
 
-      <p className="mt-6 text-center text-[10px] text-slate-400">
-        Dokumen ini dibuat otomatis oleh sistem pembayaran listrik. Simpan sebagai bukti pembayaran.
-      </p>
+        {/* ───── PEMBACAAN METER ───── */}
+        <div className="rounded-xl border border-slate-200 overflow-hidden">
+          <div className="flex items-center gap-2 bg-slate-800 px-5 py-3">
+            <Gauge className="h-4 w-4 text-amber-400" />
+            <p className="text-sm font-semibold text-white">Pembacaan Meter</p>
+          </div>
+          <div className="grid grid-cols-3 divide-x divide-slate-100">
+            <div className="px-5 py-4 text-center">
+              <p className="text-xs font-medium text-slate-400 uppercase">Meter Awal</p>
+              <p className="mt-1 text-2xl font-bold font-mono text-slate-700">
+                {formatAngka(pemakaian.meterAwal)}
+              </p>
+              <p className="text-xs text-slate-400">kWh</p>
+            </div>
+            <div className="px-5 py-4 flex items-center justify-center">
+              <ArrowRight className="h-6 w-6 text-slate-300" />
+            </div>
+            <div className="px-5 py-4 text-center">
+              <p className="text-xs font-medium text-slate-400 uppercase">Meter Akhir</p>
+              <p className="mt-1 text-2xl font-bold font-mono text-slate-700">
+                {formatAngka(pemakaian.meterAkhir)}
+              </p>
+              <p className="text-xs text-slate-400">kWh</p>
+            </div>
+          </div>
+          <div className="border-t border-slate-100 bg-amber-50 px-5 py-3 text-center">
+            <p className="text-xs text-amber-700 font-medium">
+              Jumlah Pemakaian
+            </p>
+            <p className="text-3xl font-extrabold text-amber-600">
+              {rincian.jumlahPakai}{" "}
+              <span className="text-lg font-medium">kWh</span>
+            </p>
+          </div>
+        </div>
+
+        {/* ───── RINCIAN BIAYA ───── */}
+        <div className="rounded-xl border border-slate-200 overflow-hidden">
+          <div className="flex items-center gap-2 bg-slate-800 px-5 py-3">
+            <Banknote className="h-4 w-4 text-amber-400" />
+            <p className="text-sm font-semibold text-white">Rincian Biaya</p>
+          </div>
+          <table className="w-full text-sm">
+            <tbody className="divide-y divide-slate-100">
+              <tr>
+                <td className="px-5 py-3 text-slate-600">Biaya Beban / Abonemen</td>
+                <td className="px-5 py-3 text-right font-medium text-slate-800">
+                  {formatRupiah(rincian.biayaBeban)}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-5 py-3 text-slate-600">
+                  Biaya Pemakaian{" "}
+                  <span className="text-xs text-slate-400">
+                    ({rincian.jumlahPakai} kWh ×{" "}
+                    {tarif ? formatRupiah(tarif.tarifKwh) : "-"}/kWh)
+                  </span>
+                </td>
+                <td className="px-5 py-3 text-right font-medium text-slate-800">
+                  {formatRupiah(rincian.biayaPemakaian)}
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr className="bg-amber-50">
+                <td className="px-5 py-4 font-bold text-amber-800 uppercase text-base">
+                  Total Tagihan
+                </td>
+                <td className="px-5 py-4 text-right text-2xl font-extrabold text-amber-600">
+                  {formatRupiah(rincian.total)}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        {/* ───── STATUS LUNAS ───── */}
+        <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
+          <CheckCircle2 className="h-5 w-5 text-emerald-500" fill="currentColor" />
+          <p className="text-sm font-semibold text-emerald-700">
+            Tagihan ini telah diproses dan dicatat oleh sistem.
+          </p>
+        </div>
+
+        {/* ───── TANDA TANGAN ───── */}
+        <div className="flex items-end justify-between pt-2">
+          <div className="text-center">
+            <p className="text-xs text-slate-500">Diterima oleh,</p>
+            <div className="mt-12 w-44 border-t border-slate-400">
+              <p className="pt-1 text-sm font-semibold text-slate-700">{namaPetugas}</p>
+              <p className="text-xs text-slate-400">Petugas Loket</p>
+            </div>
+          </div>
+          <div className="text-center">
+            <p className="text-xs text-slate-500">Pelanggan,</p>
+            <div className="mt-12 w-44 border-t border-slate-400">
+              <p className="pt-1 text-sm font-semibold text-slate-700">{pelanggan.nama}</p>
+              <p className="text-xs text-slate-400">No. {pelanggan.noKontrol}</p>
+            </div>
+          </div>
+        </div>
+
+        <p className="border-t border-slate-100 pt-4 text-center text-[10px] text-slate-300">
+          Dokumen diterbitkan secara otomatis oleh SIP Listrik • Simpan sebagai bukti pembayaran •
+          Tanggal cetak: {formatTanggal(tanggalCetak) || "-"}
+        </p>
+      </div>
     </div>
   );
 }
