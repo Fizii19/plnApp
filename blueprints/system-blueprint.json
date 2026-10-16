@@ -1,0 +1,2339 @@
+{
+  "version": "32.4.1",
+  "pages": [
+    {
+      "id": "k4qN9UbmfFKXA-yS--FG",
+      "name": "ERD",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-1",
+          "type": "node",
+          "parent": "1",
+          "label": "pelanggan"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-2",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-1"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-3",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-2",
+          "label": "PK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-4",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-2",
+          "label": "no_kontrol (INT)",
+          "html": "no_kontrol <span style=\"font-weight: 400;\">(INT)</span>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-5",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-1"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-6",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-5"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-7",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-5",
+          "label": "nama_pelanggan (VARCHAR(255))"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-8",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-1"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-9",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-8"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-10",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-8",
+          "label": "alamat_pelanggan(TEXT)"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-11",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-1"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-12",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-11"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-13",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-11",
+          "label": "no_tlp_pelanggan(BIGINT)"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-15",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-1"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-16",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-15"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-17",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-15",
+          "label": "jenis_pelanggan"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-18",
+          "type": "node",
+          "parent": "1",
+          "label": "pemakaian"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-19",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-20",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-19",
+          "label": "PK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-21",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-19",
+          "label": "id pemakaian(INT AI)",
+          "html": "id pemakaian<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-22",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-23",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-22",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-24",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-22",
+          "label": "no_kontrol"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-25",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-26",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-25"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-27",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-25",
+          "label": "tahun"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-28",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-29",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-28"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-30",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-28",
+          "label": "bulan"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-31",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-32",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-31"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-33",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-31",
+          "label": "meter_awal"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-40",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-41",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-40"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-42",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-40",
+          "label": "meter_akhir"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-34",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-35",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-34"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-36",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-34",
+          "label": "jumlah_pakai"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-43",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-44",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-43"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-45",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-43",
+          "label": "biaya_beban_pemakaian"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-37",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-18"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-38",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-37"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-39",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-37",
+          "label": "biaya_pemaikaian"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-46",
+          "type": "node",
+          "parent": "1",
+          "label": "petugas_loket"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-47",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-46"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-48",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-47",
+          "label": "PK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-49",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-47",
+          "label": "id petugas(INT AI)",
+          "html": "id petugas<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-50",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-46"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-51",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-50"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-52",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-50",
+          "label": "nama_petugas\n(VARCHAR(255))",
+          "html": "nama_petugas<div>(VARCHAR(255))</div>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-56",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-46"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-57",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-56"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-58",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-56",
+          "label": "jenis_kelamin(ENUM\n(lakilaki,perempuan))",
+          "html": "jenis_kelamin<span style=\"white-space: nowrap;\">(ENUM</span><div><span style=\"white-space: nowrap;\">(lakilaki,</span><span style=\"white-space: nowrap;\">perempuan))</span></div>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-59",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-46"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-60",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-59"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-61",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-59",
+          "label": "no_hp(BIGINT)"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-117",
+          "type": "node",
+          "parent": "1",
+          "label": "tarif"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-118",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-117"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-119",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-118",
+          "label": "PK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-120",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-118",
+          "label": "id_tarif (INT AI)",
+          "html": "id_tarif <span style=\"font-weight: normal;\">(INT AI)</span>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-121",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-117"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-122",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-121",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-123",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-121",
+          "label": "jenis_plg"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-124",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-117"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-125",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-124"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-126",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-124",
+          "label": "biaya_beban"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-127",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-117"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-128",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-127"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-129",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-127",
+          "label": "tarif_kwh"
+        },
+        {
+          "id": "4kRjjxQBPAypLydYlfMB-1",
+          "type": "edge",
+          "parent": "1",
+          "source": "MtZQ1Ze3If3u0ea14SPx-5",
+          "target": "MtZQ1Ze3If3u0ea14SPx-25"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-9",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-1",
+          "label": "One"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-10",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-1",
+          "label": "Many"
+        },
+        {
+          "id": "4kRjjxQBPAypLydYlfMB-2",
+          "type": "edge",
+          "parent": "1",
+          "target": "MtZQ1Ze3If3u0ea14SPx-156"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-1",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-2",
+          "label": "One"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-2",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-2",
+          "label": "Many"
+        },
+        {
+          "id": "4kRjjxQBPAypLydYlfMB-3",
+          "type": "edge",
+          "parent": "1",
+          "source": "MtZQ1Ze3If3u0ea14SPx-5",
+          "target": "MtZQ1Ze3If3u0ea14SPx-150"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-7",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-3",
+          "label": "One"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-8",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-3",
+          "label": "Many"
+        },
+        {
+          "id": "4kRjjxQBPAypLydYlfMB-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "MtZQ1Ze3If3u0ea14SPx-5",
+          "target": "MtZQ1Ze3If3u0ea14SPx-121"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-5",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-4",
+          "label": "One"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-6",
+          "type": "node",
+          "parent": "4kRjjxQBPAypLydYlfMB-4",
+          "label": "Many"
+        },
+        {
+          "id": "V9syVIzQ0KTajEBfsfzr-1",
+          "type": "edge",
+          "parent": "1",
+          "source": "MtZQ1Ze3If3u0ea14SPx-121",
+          "target": "MtZQ1Ze3If3u0ea14SPx-147"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-3",
+          "type": "node",
+          "parent": "V9syVIzQ0KTajEBfsfzr-1",
+          "label": "One"
+        },
+        {
+          "id": "dYIJabNsVzWeGPCzn2X1-4",
+          "type": "node",
+          "parent": "V9syVIzQ0KTajEBfsfzr-1",
+          "label": "One"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-143",
+          "type": "node",
+          "parent": "1",
+          "label": "pembayaran",
+          "metadata": {
+            "biaya_total": "100"
+          }
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-144",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-145",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-144",
+          "label": "PK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-146",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-144",
+          "label": "id_pembayaran(INT AI)",
+          "html": "id_pembayaran<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-147",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-148",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-147",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-149",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-147",
+          "label": "id_tarif"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-150",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-151",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-150",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-152",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-150",
+          "label": "no_kontrol"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-156",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-157",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-156",
+          "label": "FK"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-158",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-156",
+          "label": "id_petugas"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-159",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-160",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-159"
+        },
+        {
+          "id": "MtZQ1Ze3If3u0ea14SPx-161",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-159",
+          "label": "jumlah_bayar"
+        },
+        {
+          "id": "V9syVIzQ0KTajEBfsfzr-51",
+          "type": "node",
+          "parent": "MtZQ1Ze3If3u0ea14SPx-143"
+        },
+        {
+          "id": "V9syVIzQ0KTajEBfsfzr-52",
+          "type": "node",
+          "parent": "V9syVIzQ0KTajEBfsfzr-51"
+        },
+        {
+          "id": "V9syVIzQ0KTajEBfsfzr-53",
+          "type": "node",
+          "parent": "V9syVIzQ0KTajEBfsfzr-51",
+          "label": "biaya_total"
+        },
+        {
+          "id": "q4JbZ2nhG_Yfnm1MBJ9I-1",
+          "type": "node",
+          "parent": "1",
+          "label": "ERD"
+        }
+      ]
+    },
+    {
+      "id": "fhn72prhUMt--e6tu4v_",
+      "name": "FLOWCHART",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-2",
+          "type": "edge",
+          "parent": "1",
+          "source": "G4aBjT9QP5JeXZOZpeNf-1",
+          "target": "EgivwyJB1PYbkuX6rPq1-1"
+        },
+        {
+          "id": "G4aBjT9QP5JeXZOZpeNf-1",
+          "type": "node",
+          "parent": "1",
+          "label": "START",
+          "html": "START<div><br></div>"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-4",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-1",
+          "target": "EgivwyJB1PYbkuX6rPq1-3"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-1",
+          "type": "node",
+          "parent": "1",
+          "label": "LOGIN"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-9",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-3",
+          "target": "EgivwyJB1PYbkuX6rPq1-8"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-15",
+          "type": "node",
+          "parent": "EgivwyJB1PYbkuX6rPq1-9",
+          "label": "TIDAK"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-13",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-3",
+          "target": "EgivwyJB1PYbkuX6rPq1-12"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-14",
+          "type": "node",
+          "parent": "EgivwyJB1PYbkuX6rPq1-13",
+          "label": "YA"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-3",
+          "type": "node",
+          "parent": "1",
+          "label": "APAKAH SEBAGAI PETUGAS/ADMIN"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-8",
+          "type": "node",
+          "parent": "1",
+          "label": "ERROR SALAH USERNAME ATAU PASSWORD"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-20",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-12",
+          "target": "EgivwyJB1PYbkuX6rPq1-19"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-12",
+          "type": "node",
+          "parent": "1",
+          "label": "DASHBOARD PETUGAS"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-17",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-18",
+          "type": "edge",
+          "parent": "1",
+          "target": "EgivwyJB1PYbkuX6rPq1-1"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-22",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-19",
+          "target": "EgivwyJB1PYbkuX6rPq1-21"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-19",
+          "type": "node",
+          "parent": "1",
+          "label": "INPUT NO KONTROL",
+          "html": "INPUT NO KONTROL<div><br></div>"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-24",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-21",
+          "target": "EgivwyJB1PYbkuX6rPq1-23"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-25",
+          "type": "node",
+          "parent": "EgivwyJB1PYbkuX6rPq1-24",
+          "label": "YA"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-27",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-21",
+          "target": "EgivwyJB1PYbkuX6rPq1-26"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-28",
+          "type": "node",
+          "parent": "EgivwyJB1PYbkuX6rPq1-27",
+          "label": "TIDAK"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-21",
+          "type": "node",
+          "parent": "1",
+          "label": "APAKAH NO KONTROL ADA?"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-35",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-23",
+          "target": "EgivwyJB1PYbkuX6rPq1-34"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-23",
+          "type": "node",
+          "parent": "1",
+          "label": "DATA PELANGGAN AKAN TERISI OTOMATIS",
+          "html": "<font>DATA PELANGGAN AKAN TERISI OTOMATIS</font>"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-26",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENGINPUT DATA PELANGGAN",
+          "html": "<font>PETUGAS MENGINPUT DATA PELANGGAN</font>"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-37",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-34",
+          "target": "EgivwyJB1PYbkuX6rPq1-36"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-34",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENEKAN TOMBOL PROSES UNTUK MENCARI DAN MENAMPILKAN PEMAKAIAN LISTRIK",
+          "html": "<font>PETUGAS MENEKAN TOMBOL PROSES UNTUK MENCARI DAN MENAMPILKAN PEMAKAIAN LISTRIK</font>"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-41",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-36",
+          "target": "EgivwyJB1PYbkuX6rPq1-40"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-36",
+          "type": "node",
+          "parent": "1",
+          "label": "SISTEM MENGHITUNG SELURUH KOMPONEN BIAYA"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-40",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENCETAK FORMULIR REKENING LISTRIK"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-42",
+          "type": "node",
+          "parent": "1",
+          "label": "END"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-43",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-44",
+          "type": "edge",
+          "parent": "1",
+          "target": "EgivwyJB1PYbkuX6rPq1-42"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-46",
+          "type": "node",
+          "parent": "1",
+          "label": "DATA TERSIMPAN"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-47",
+          "type": "edge",
+          "parent": "1",
+          "source": "EgivwyJB1PYbkuX6rPq1-26",
+          "target": "EgivwyJB1PYbkuX6rPq1-46"
+        },
+        {
+          "id": "EgivwyJB1PYbkuX6rPq1-48",
+          "type": "edge",
+          "parent": "1",
+          "target": "EgivwyJB1PYbkuX6rPq1-19"
+        },
+        {
+          "id": "r2cphv9O5QaSxnUAFQHj-1",
+          "type": "node",
+          "parent": "1",
+          "label": "FLOWCHART"
+        }
+      ]
+    },
+    {
+      "id": "QseahocYbQLpyqxvTqQT",
+      "name": "DFD",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-14",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-2",
+          "target": "20vW2h7LcyfMifLQ9nb6-3"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-15",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-14",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-17",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-2",
+          "target": "20vW2h7LcyfMifLQ9nb6-5"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-19",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-17",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-2",
+          "type": "node",
+          "parent": "1",
+          "label": "PEMBAYARAN LISTRIK",
+          "html": "<b>PEMBAYARAN LISTRIK</b>"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-13",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-3",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-5",
+          "type": "node",
+          "parent": "20vW2h7LcyfMifLQ9nb6-13",
+          "label": "Login"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-8",
+          "type": "edge",
+          "parent": "1",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-10",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-8",
+          "label": "CRUD data kartu pelanggan"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-12",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-3",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-3",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS LOKET"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-31",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-45",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-31",
+          "label": "Login"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-32",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-36",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-32",
+          "label": "Logout"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-5",
+          "type": "node",
+          "parent": "1",
+          "label": "ADMINISTRASI"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-3",
+          "target": "20vW2h7LcyfMifLQ9nb6-3"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-7",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-7",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-6",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-7",
+          "type": "node",
+          "parent": "1",
+          "label": "PELANGGAN"
+        },
+        {
+          "id": "20vW2h7LcyfMifLQ9nb6-14",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-3",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-3",
+          "type": "node",
+          "parent": "20vW2h7LcyfMifLQ9nb6-14",
+          "label": "Logout"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-22",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-46",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-22",
+          "label": "CRUD data tarif"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-23",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-43",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-23",
+          "label": "CRUD data kartu pelanggan"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-24",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-42",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-24",
+          "label": "CRUD data petugas loket"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-25",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-41",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-25",
+          "label": "Generate laporan pembayaran"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-26",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-40",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-26",
+          "label": "Entri Transaksi Pembayaran"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-27",
+          "type": "edge",
+          "parent": "1",
+          "source": "20vW2h7LcyfMifLQ9nb6-5",
+          "target": "20vW2h7LcyfMifLQ9nb6-2"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-39",
+          "type": "node",
+          "parent": "mociYgCwEN05gQ3IOQqR-27",
+          "label": "CRUD data pemakaian"
+        },
+        {
+          "id": "mociYgCwEN05gQ3IOQqR-47",
+          "type": "node",
+          "parent": "1",
+          "label": "DFD LVL 0"
+        }
+      ]
+    },
+    {
+      "id": "FGZO7ZXmR54bYgDQu-7g",
+      "name": "All",
+      "cells": [
+        {
+          "id": "1",
+          "type": "layer"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-1",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-5",
+          "target": "-A_iEiLP006DZDSCm97w-11"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-2",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-1",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-3",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-5",
+          "target": "-A_iEiLP006DZDSCm97w-16"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-4",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-3",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-5",
+          "type": "node",
+          "parent": "1",
+          "label": "PEMBAYARAN LISTRIK",
+          "html": "<b>PEMBAYARAN LISTRIK</b>"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-11",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-7",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-6",
+          "label": "Login"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-8",
+          "type": "edge",
+          "parent": "1",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-9",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-8",
+          "label": "CRUD data kartu pelanggan"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-10",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-11",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-11",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS LOKET"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-16",
+          "type": "node",
+          "parent": "1",
+          "label": "ADMINISTRASI"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-17",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-11",
+          "target": "-A_iEiLP006DZDSCm97w-11"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-18",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-20",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-19",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-18",
+          "label": "History Pembayaran"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-20",
+          "type": "node",
+          "parent": "1",
+          "label": "PELANGGAN"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-21",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-11",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-22",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-21",
+          "label": "Logout"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-23",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-24",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-23",
+          "label": "CRUD data tarif"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-25",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-26",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-25",
+          "label": "CRUD data kartu pelanggan"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-27",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-28",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-27",
+          "label": "CRUD data petugas loket"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-29",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-30",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-29",
+          "label": "Generate laporan pembayaran"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-31",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-32",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-31",
+          "label": "Entri Transaksi Pembayaran"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-33",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-34",
+          "type": "node",
+          "parent": "-A_iEiLP006DZDSCm97w-33",
+          "label": "CRUD data pemakaian"
+        },
+        {
+          "id": "-A_iEiLP006DZDSCm97w-35",
+          "type": "node",
+          "parent": "1",
+          "label": "DFD LVL 0"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-1",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-2",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-4"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-2",
+          "type": "node",
+          "parent": "1",
+          "label": "START",
+          "html": "START<div><br></div>"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-3",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-4",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-9"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-4",
+          "type": "node",
+          "parent": "1",
+          "label": "LOGIN"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-5",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-9",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-10"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-6",
+          "type": "node",
+          "parent": "Z2Jr9mm6tpCYpLVcBlbx-5",
+          "label": "TIDAK"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-7",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-9",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-12"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-8",
+          "type": "node",
+          "parent": "Z2Jr9mm6tpCYpLVcBlbx-7",
+          "label": "YA"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-9",
+          "type": "node",
+          "parent": "1",
+          "label": "APAKAH SEBAGAI PETUGAS"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-10",
+          "type": "node",
+          "parent": "1",
+          "label": "ERROR SALAH USERNAME ATAU PASSWORD"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-11",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-12",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-16"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-12",
+          "type": "node",
+          "parent": "1",
+          "label": "DASHBOARD PETUGAS"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-13",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-14",
+          "type": "edge",
+          "parent": "1",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-4"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-15",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-16",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-21"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-16",
+          "type": "node",
+          "parent": "1",
+          "label": "INPUT NO KONTROL",
+          "html": "INPUT NO KONTROL<div><br></div>"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-17",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-21",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-23"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-18",
+          "type": "node",
+          "parent": "Z2Jr9mm6tpCYpLVcBlbx-17",
+          "label": "ADA"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-19",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-21",
+          "target": "t0VZP79WYGagLXgbCVNd-108"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-20",
+          "type": "node",
+          "parent": "Z2Jr9mm6tpCYpLVcBlbx-19",
+          "label": "TIDAK"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-21",
+          "type": "node",
+          "parent": "1",
+          "label": "APAKAH NO KONTROL ADA DI DATABASE?"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-22",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-23",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-26"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-23",
+          "type": "node",
+          "parent": "1",
+          "label": "DATA PELANGGAN AKAN TERISI OTOMATIS",
+          "html": "<font>DATA PELANGGAN AKAN TERISI OTOMATIS</font>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-152",
+          "type": "edge",
+          "parent": "1",
+          "source": "Z2Jr9mm6tpCYpLVcBlbx-26",
+          "target": "t0VZP79WYGagLXgbCVNd-151"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-26",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENEKAN TOMBOL PROSES UNTUK MENCARI DAN MENAMPILKAN PEMAKAIAN LISTRIK",
+          "html": "<font>PETUGAS MENEKAN TOMBOL PROSES UNTUK MENCARI DAN MENAMPILKAN PEMAKAIAN LISTRIK</font>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-107",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-29",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENCETAK FORMULIR REKENING LISTRIK"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-33",
+          "type": "node",
+          "parent": "1",
+          "label": "DATA TERSIMPAN"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-34",
+          "type": "edge",
+          "parent": "1",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-33"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-35",
+          "type": "edge",
+          "parent": "1",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-16"
+        },
+        {
+          "id": "Z2Jr9mm6tpCYpLVcBlbx-36",
+          "type": "node",
+          "parent": "1",
+          "label": "FLOWCHART"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-1",
+          "type": "node",
+          "parent": "1",
+          "label": "pelanggan"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-2",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-1"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-3",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-2",
+          "label": "PK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-4",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-2",
+          "label": "no_kontrol (INT)",
+          "html": "no_kontrol <span style=\"font-weight: 400;\">(INT)</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-5",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-1"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-6",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-5"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-7",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-5",
+          "label": "nama_pelanggan (VARCHAR(255)NOT NULL)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-8",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-1"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-9",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-8"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-10",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-8",
+          "label": "alamat_pelanggan(TEXT NOT NULL)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-11",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-1"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-12",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-11"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-13",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-11",
+          "label": "no_tlp_pelanggan(VARCHAR(20))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-14",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-1"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-15",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-14"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-16",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-14",
+          "label": "jenis_pelanggan (VARCHAR(50))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-17",
+          "type": "node",
+          "parent": "1",
+          "label": "pemakaian"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-18",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-19",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-18",
+          "label": "PK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-20",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-18",
+          "label": "id pemakaian(INT AI)",
+          "html": "id pemakaian<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-21",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-22",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-21",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-23",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-21",
+          "label": "no_kontrol"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-24",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-25",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-24"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-26",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-24",
+          "label": "tahun(YEAR)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-27",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-28",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-27"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-29",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-27",
+          "label": "bulan(INT)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-30",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-31",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-30"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-32",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-30",
+          "label": "meter_awal(INT)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-33",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-34",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-33"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-35",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-33",
+          "label": "meter_akhir(INT)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-36",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-37",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-36"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-38",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-36",
+          "label": "jumlah_pakai(INT)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-39",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-40",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-39"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-41",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-39",
+          "label": "biaya_beban_pemakaian\n(DECIMAL(10,2))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-42",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-17"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-43",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-42"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-44",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-42",
+          "label": "biaya_pemaikaian\n(DECIMAL(10,2))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-45",
+          "type": "node",
+          "parent": "1",
+          "label": "petugas_loket"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-46",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-47",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-46",
+          "label": "PK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-48",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-46",
+          "label": "id petugas(INT AI)",
+          "html": "id petugas<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-49",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-50",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-49"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-51",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-49",
+          "label": "nama_petugas\n(VARCHAR(255))",
+          "html": "nama_petugas<div>(VARCHAR(255))</div>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-52",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-53",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-52"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-54",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-52",
+          "label": "jenis_kelamin(ENUM\n(laki-laki,perempuan))",
+          "html": "jenis_kelamin<span style=\"white-space: nowrap;\">(ENUM</span><div><span style=\"white-space: nowrap;\">(laki-laki,</span><span style=\"white-space: nowrap;\">perempuan))</span></div>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-55",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-56",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-55"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-57",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-55",
+          "label": "no_hp(VARCHAR(20))"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-12",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-13",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-12"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-14",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-12",
+          "label": "username(VARCHAR(100))"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-15",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-16",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-15"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-17",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-15",
+          "label": "password(VARCHAR(255))"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-18",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-45"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-19",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-18"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-20",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-18",
+          "label": "role(enum(admin,petugas))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-58",
+          "type": "node",
+          "parent": "1",
+          "label": "tarif"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-59",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-58"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-60",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-59",
+          "label": "PK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-61",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-59",
+          "label": "id_tarif (INT AI)",
+          "html": "id_tarif <span style=\"font-weight: normal;\">(INT AI)</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-62",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-58"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-63",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-62",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-64",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-62",
+          "label": "jenis_pelanggan\n(VARCHAR(50))",
+          "html": "jenis_pelanggan<div><span style=\"white-space: nowrap;\">(VARCHAR(50))</span></div>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-65",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-58"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-66",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-65"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-67",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-65",
+          "label": "biaya_beban\n(DECIMAL(10,2))",
+          "html": "biaya_beban<div>(DECIMAL(10,2))</div>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-68",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-58"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-69",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-68"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-70",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-68",
+          "label": "tarif_kwh(DECIMAL(10,2))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-71",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-115",
+          "target": "t0VZP79WYGagLXgbCVNd-21"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-73",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-71",
+          "label": "Many"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-74",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-119",
+          "target": "t0VZP79WYGagLXgbCVNd-96"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-76",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-74",
+          "label": "Many"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-77",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-5",
+          "target": "t0VZP79WYGagLXgbCVNd-93"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-78",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-77",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-79",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-77",
+          "label": "Many"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-80",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-5",
+          "target": "t0VZP79WYGagLXgbCVNd-62"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-81",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-80",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-82",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-80",
+          "label": "Many"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-83",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-109",
+          "target": "t0VZP79WYGagLXgbCVNd-90"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-85",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-83",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-86",
+          "type": "node",
+          "parent": "1",
+          "label": "pembayaran",
+          "metadata": {
+            "biaya_total": "100"
+          }
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-87",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-88",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-87",
+          "label": "PK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-89",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-87",
+          "label": "id_pembayaran(INT AI)",
+          "html": "id_pembayaran<span style=\"font-weight: 400;\">(INT AI)</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-90",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-91",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-90",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-92",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-90",
+          "label": "id_tarif"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-93",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-94",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-93",
+          "label": "FK",
+          "html": "<b>FK</b>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-95",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-93",
+          "label": "no_kontrol"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-96",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-97",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-96",
+          "label": "FK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-98",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-96",
+          "label": "id_petugas"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-99",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-100",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-99"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-101",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-99",
+          "label": "jumlah_bayar\n(DECIMAL(10,2))"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-102",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-103",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-102"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-104",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-102",
+          "label": "biaya_total\n(DECIMAL(10,2))"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-9",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-86"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-10",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-9"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-11",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-9",
+          "label": "tanggal_bayar\n(DATETIME)"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-105",
+          "type": "node",
+          "parent": "1",
+          "label": "ERD"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-108",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENGINPUT DATA PELANGGAN",
+          "html": "<span style=\"font-size: 7px;\">PETUGAS MENGINPUT DATA PELANGGAN</span>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-110",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-62",
+          "target": "t0VZP79WYGagLXgbCVNd-109"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-111",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-110",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-109",
+          "type": "node",
+          "parent": "1",
+          "label": "MEMILIKI"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-113",
+          "type": "node",
+          "parent": "1",
+          "label": "MEMILIKI"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-114",
+          "type": "node",
+          "parent": "1",
+          "label": "MEMILIKI"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-116",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-5",
+          "target": "t0VZP79WYGagLXgbCVNd-115"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-117",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-116",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-115",
+          "type": "node",
+          "parent": "1",
+          "label": "MEMILIKI"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-120",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-46",
+          "target": "t0VZP79WYGagLXgbCVNd-119"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-121",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-120",
+          "label": "One"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-119",
+          "type": "node",
+          "parent": "1",
+          "label": "MELAKUKAN"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-150",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-129",
+          "target": "t0VZP79WYGagLXgbCVNd-148"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-129",
+          "type": "node",
+          "parent": "1",
+          "label": "PELANGGAN MENERIMA REKENING LISTRIK"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-133",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-130",
+          "target": "t0VZP79WYGagLXgbCVNd-134"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-130",
+          "type": "node",
+          "parent": "1",
+          "label": "PELANGGAN MELAKUKAN PEMBAYARAN"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-144",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-134",
+          "target": "t0VZP79WYGagLXgbCVNd-129"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-145",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-144",
+          "label": "SUDAH LUNAS"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-134",
+          "type": "node",
+          "parent": "1",
+          "label": "PETUGAS MENGECEK PEMBAYARAN"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-146",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-134",
+          "target": "t0VZP79WYGagLXgbCVNd-130"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-147",
+          "type": "node",
+          "parent": "t0VZP79WYGagLXgbCVNd-146",
+          "label": "BELUM LUNAS"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-148",
+          "type": "node",
+          "parent": "1",
+          "label": "END",
+          "html": "END<div><br/></div>"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-153",
+          "type": "edge",
+          "parent": "1",
+          "source": "t0VZP79WYGagLXgbCVNd-151",
+          "target": "Z2Jr9mm6tpCYpLVcBlbx-29"
+        },
+        {
+          "id": "t0VZP79WYGagLXgbCVNd-151",
+          "type": "node",
+          "parent": "1",
+          "label": "SISTEM MENCARI DAN MENAMPILKAN PEMAKAIAN LISTRIK DAN MENGHITUNG SELURUH KOMPONEN BIAYA"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-3",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-4",
+          "type": "edge",
+          "parent": "1",
+          "target": "-A_iEiLP006DZDSCm97w-5"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-5",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-4",
+          "label": "LOGIN"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-6",
+          "type": "edge",
+          "parent": "1",
+          "source": "-A_iEiLP006DZDSCm97w-16"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-7",
+          "type": "edge",
+          "parent": "1"
+        },
+        {
+          "id": "nWcT8LkDzUfuEWEo3TyN-8",
+          "type": "node",
+          "parent": "nWcT8LkDzUfuEWEo3TyN-7",
+          "label": "LOGOUT"
+        }
+      ]
+    }
+  ]
+}
